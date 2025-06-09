@@ -1,0 +1,107 @@
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Панель студента</title>
+<link href="student_dashboard.css" rel="stylesheet">
+<style>
+  /* Пример базовых стилей для кнопок */
+.btn {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+ }
+th {
+    background: #f0f0f0;
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">ГАППОУ КК ЛСПК</div>
+<nav>
+    <a href="index.html">Выйти</a>
+</nav>
+</header>
+
+<div class="container">
+<h1>Панель студента</h1>
+<p>Добро пожаловать, Студент!</p>
+
+<h3>Список преподавателей</h3>
+<table id="teachers-table">
+    <thead>
+    <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Должность</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Заполняется JS -->
+    </tbody>
+</table>
+
+<p id="no-data-msg" style="color: #666; font-style: italic; margin-top: 1rem;"></p>
+</div>
+
+<script>
+  // Проверка, есть ли в localStorage данные преподавателей
+let teachers = JSON.parse(localStorage.getItem("teachers"));
+
+  // Если данных нет, показываем сообщение и инициализируем пустой массив
+if (!teachers || teachers.length === 0) {
+    document.getElementById("no-data-msg").textContent = "Данных о преподавателях пока нет.";
+    teachers = [];
+} else {
+    document.getElementById("no-data-msg").textContent = "";
+}
+
+const tbody = document.querySelector("#teachers-table tbody");
+
+function renderTable() {
+    tbody.innerHTML = "";
+    if (teachers.length === 0) return; // Если нет преподавателей, не выводим таблицу
+    teachers.forEach(t => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+        <td>${t.last_name}</td>
+        <td>${t.first_name}</td>
+        <td>${t.middle_name}</td>
+        <td>${t.position}</td>
+        <td><a class="btn" href="teacher_profile.html?id=${encodeURIComponent(t.user_id)}">Просмотр анкеты</a></td>
+    `;
+    tbody.appendChild(tr);
+    });
+}
+
+renderTable();
+</script>
+</body>
+</html>

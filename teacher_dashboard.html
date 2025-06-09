@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Панель преподавателя</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="teacher_dashboard.css">
+</head>
+<body>
+
+<header>
+<div class="logo">ГАППОУ КК ЛСПК</div>
+<nav>
+    <a href="edit_teacher.html" class="btn">Редактировать анкету</a>
+    <a href="#" id="logoutBtn" class="btn">Выйти</a>
+</nav>
+</header>
+
+<div class="container">
+<h1>Панель преподавателя</h1>
+<div id="teacherInfo"></div>
+<hr>
+<h3>Расписание</h3>
+<table class="table">
+    <thead>
+    <tr><th>День</th><th>Урок</th><th>Предмет</th><th>Кабинет</th></tr>
+    </thead>
+    <tbody id="scheduleTable"></tbody>
+</table>
+<a href="schedule.html" class="btn">Добавить расписание</a>
+</div>
+
+<script>
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if (!currentUser || currentUser.role !== "teacher") {
+window.location.href = "login.html";
+}
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+localStorage.removeItem("currentUser");
+window.location.href = "login.html";
+});
+
+// Отображение информации преподавателя
+const teacherData = JSON.parse(localStorage.getItem("teacher_" + currentUser.username));
+if (teacherData) {
+const infoHtml = `
+    <div class="profile-wrapper">
+    <div class="profile-info">
+        <h3>Ваша анкета</h3>
+        <table class="table">
+        <tr><th>Фамилия</th><td>${teacherData.last_name || ''}</td></tr>
+        <tr><th>Имя</th><td>${teacherData.first_name || ''}</td></tr>
+        <tr><th>Отчество</th><td>${teacherData.middle_name || ''}</td></tr>
+        <tr><th>Дата рождения</th><td>${teacherData.birth_date || ''}</td></tr>
+        <tr><th>Email</th><td>${teacherData.email || ''}</td></tr>
+        <tr><th>Телефон</th><td>${teacherData.phone || ''}</td></tr>
+        <tr><th>Должность</th><td>${teacherData.position || ''}</td></tr>
+        <tr><th>Кафедра</th><td>${teacherData.department || ''}</td></tr>
+        <tr><th>Образование</th><td>${teacherData.education || ''}</td></tr>
+        <tr><th>Квалификация</th><td>${teacherData.qualification || ''}</td></tr>
+        <tr><th>Стаж работы</th><td>${teacherData.work_experience || ''}</td></tr>
+        <tr><th>Предметы</th><td>${teacherData.subjects || ''}</td></tr>
+        <tr><th>Методы преподавания</th><td>${teacherData.teaching_methods || ''}</td></tr>
+        <tr><th>Научная деятельность</th><td>${teacherData.scientific_activity || ''}</td></tr>
+        </table>
+    </div>
+    <div class="profile-photo">
+        ${teacherData.profile_photo ? `<img src="${teacherData.profile_photo}" alt="Фото">` : '<div class="photo-placeholder">Фото не загружено</div>'}
+    </div>
+    </div>`;
+document.getElementById("teacherInfo").innerHTML = infoHtml;
+}
+
+// Расписание
+const schedule = JSON.parse(localStorage.getItem("schedule_" + currentUser.username)) || [];
+const tbody = document.getElementById("scheduleTable");
+schedule.forEach(row => {
+const tr = document.createElement("tr");
+tr.innerHTML = `<td>${row.day_of_week}</td><td>${row.lesson_number}</td><td>${row.subject}</td><td>${row.room}</td>`;
+tbody.appendChild(tr);
+});
+</script>
+
+</body>
+</html>

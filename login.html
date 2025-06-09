@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Вход</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="register.css">
+</head>
+<body class="bg-light">
+
+<header>
+<div class="logo">ГАППОУ КК ЛСПК</div>
+<nav>
+    <a href="index.html">Главная</a>
+</nav>
+</header>
+
+<div class="container">
+<h2>Вход в систему</h2>
+<form id="loginForm">
+    <div class="form-group">
+    <label for="username">Имя пользователя</label>
+    <input type="text" id="username" required>
+    </div>
+
+    <div class="form-group">
+    <label for="password">Пароль</label>
+    <input type="password" id="password" required>
+    </div>
+
+    <button type="submit">Войти</button>
+    <p><a href="register.html">Нет аккаунта? Зарегистрироваться</a></p>
+</form>
+</div>
+
+<script>
+// Создание администратора, если он ещё не добавлен
+const defaultAdmin = {
+username: "admin",
+password: "admin123",
+role: "admin"
+};
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+if (!users.some(user => user.username === defaultAdmin.username)) {
+users.push(defaultAdmin);
+localStorage.setItem("users", JSON.stringify(users));
+}
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+event.preventDefault();
+
+const username = document.getElementById("username").value.trim();
+const password = document.getElementById("password").value;
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+const user = users.find(u => u.username === username && u.password === password);
+
+if (!user) {
+    alert("Неверное имя пользователя или пароль.");
+    return;
+}
+
+  // Сохраняем текущего пользователя
+localStorage.setItem("currentUser", JSON.stringify(user));
+
+  // Перенаправляем в зависимости от роли
+if (user.role === "teacher") {
+    window.location.href = "teacher_dashboard.html";
+} else if (user.role === "student") {
+    window.location.href = "student_dashboard.html";
+} else if (user.role === "admin") {
+    window.location.href = "admin_dashboard.html";
+} else {
+    alert("Неизвестная роль.");
+}
+});
+</script>
+
+</body>
+</html>

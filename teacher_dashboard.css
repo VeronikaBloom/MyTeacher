@@ -1,0 +1,260 @@
+/* === ШАПКА === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 104, 147);
+    padding: 15px 30px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+}
+
+header nav a {
+    margin-left: 15px;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+header nav a.btn-primary {
+    background-color: #1d5deb;
+    color: white;
+}
+
+header nav a.btn-primary:hover {
+    background-color: #184cbc;
+    transform: scale(1.05);
+}
+
+header nav a.btn-secondary {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+header nav a.btn-secondary:hover {
+    background-color: #636e72;
+    transform: scale(1.05);
+}
+
+/* === ОСНОВНОЕ ОФОРМЛЕНИЕ === */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* === ЗАГОЛОВКИ === */
+h1, h2, h3 {
+    color: rgb(0, 104, 147);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* === КНОПКИ === */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 5px 10px 5px 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: rgb(29, 93, 235);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: rgb(24, 76, 188);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #636e72;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* === ТАБЛИЦА === */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+.table th {
+    background-color: rgb(0, 104, 147);
+    color: white;
+    text-transform: uppercase;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* === ФОРМА === */
+form {
+    margin-top: 20px;
+}
+
+form label {
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* === АНКЕТА И ФОТО ПРЕПОДАВАТЕЛЯ === */
+.profile-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.profile-info {
+    flex: 2;
+    min-width: 300px;
+}
+
+.profile-photo {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 15px;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+}
+
+.profile-photo img {
+    max-width: 100%;
+    max-height: 320px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.photo-placeholder {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* === МАРГИН ДЛЯ КНОПКИ === */
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    header nav a {
+        flex: 1 1 auto;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .table th, .table td {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .profile-wrapper {
+        flex-direction: column;
+    }
+
+    .profile-photo {
+        align-self: center;
+    }
+}

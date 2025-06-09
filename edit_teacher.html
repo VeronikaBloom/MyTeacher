@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать анкету</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="teacher_dashboard.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2>Редактирование анкеты преподавателя</h2>
+    <form id="editForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3"><label>Фамилия</label><input type="text" name="last_name" class="form-control"></div>
+                <div class="mb-3"><label>Имя</label><input type="text" name="first_name" class="form-control"></div>
+                <div class="mb-3"><label>Отчество</label><input type="text" name="middle_name" class="form-control"></div>
+                <div class="mb-3"><label>Дата рождения</label><input type="date" name="birth_date" class="form-control"></div>
+                <div class="mb-3"><label>Email</label><input type="email" name="email" class="form-control"></div>
+                <div class="mb-3"><label>Телефон</label><input type="text" name="phone" class="form-control"></div>
+                <div class="mb-3"><label>Должность</label><input type="text" name="position" class="form-control"></div>
+                <div class="mb-3"><label>Кафедра</label><input type="text" name="department" class="form-control"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3"><label>Образование</label><textarea name="education" class="form-control"></textarea></div>
+                <div class="mb-3"><label>Квалификация</label><textarea name="qualification" class="form-control"></textarea></div>
+                <div class="mb-3"><label>Стаж работы</label><input type="text" name="work_experience" class="form-control"></div>
+                <div class="mb-3"><label>Предметы</label><textarea name="subjects" class="form-control"></textarea></div>
+                <div class="mb-3"><label>Методы преподавания</label><textarea name="teaching_methods" class="form-control"></textarea></div>
+                <div class="mb-3"><label>Научная деятельность</label><textarea name="scientific_activity" class="form-control"></textarea></div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Фото профиля</label>
+            <input type="file" name="profile_photo" class="form-control">
+            <div id="photoPreview" class="mt-2"></div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Сохранить</button>
+        <a href="teacher_dashboard.html" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
+
+<script>
+const teacher = JSON.parse(localStorage.getItem("currentTeacher")) || {};
+
+window.onload = () => {
+const form = document.forms["editForm"];
+for (let key in teacher) {
+    if (form[key]) form[key].value = teacher[key];
+}
+};
+
+document.getElementById("editForm").addEventListener("submit", function(event) {
+event.preventDefault();
+
+const form = event.target;
+const updatedTeacher = {};
+for (let el of form.elements) {
+    if (el.name && el.type !== "file") {
+    updatedTeacher[el.name] = el.value;
+    }
+}
+
+localStorage.setItem("currentTeacher", JSON.stringify(updatedTeacher));
+alert("Анкета сохранена!");
+window.location.href = "teacher_dashboard.html";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель администратора</title>
+    <link rel="stylesheet" href="admin_dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table thead {
+            background-color: #006893;
+            color: white;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tbody tr:hover {
+            background-color: #e0f7fa;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
+
+        .btn-info { background-color: #17a2b8; }
+        .btn-primary { background-color: #007bff; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-secondary { background-color: #6c757d; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">PedBoard</div>
+    <nav>
+        <a href="index.html" class="btn btn-secondary">Выйти</a>
+    </nav>
+</header>
+<div class="container">
+    <h1>Панель администратора</h1>
+    <p>Добро пожаловать, Администратор! Здесь вы можете управлять пользователями.</p>
+
+    <h3>Список пользователей</h3>
+    <table id="users-table">
+        <thead>
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Имя пользователя</th>
+            <th>Роль</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Содержимое будет загружено JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    const tbody = document.querySelector("#users-table tbody");
+
+    function getTeacherByUserId(user_id) {
+        return teachers.find(t => t.user_id == user_id) || {};
+    }
+
+    function renderTable() {
+        tbody.innerHTML = "";
+
+        users.forEach(user => {
+            const teacher = getTeacherByUserId(user.id);
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${teacher.last_name || "-"}</td>
+                <td>${teacher.first_name || "-"}</td>
+                <td>${teacher.middle_name || "-"}</td>
+                <td>${user.username}</td>
+                <td>${user.role}</td>
+                <td>
+                    ${user.role === 'teacher' ? `
+                        <a href="teacher_profile.html?id=${user.id}" class="btn btn-info">Просмотр анкеты</a>
+                        <a href="edit_teacher.html?id=${user.id}" class="btn btn-primary">Редактировать</a>
+                    ` : ''}
+                    ${user.role !== 'admin' ? `
+                        <button class="btn btn-danger" onclick="deleteUser(${user.id})">Удалить</button>
+                    ` : ''}
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function deleteUser(id) {
+        if (!confirm("Вы уверены, что хотите удалить этого пользователя?")) return;
+
+        users = users.filter(u => u.id !== id);
+        teachers = teachers.filter(t => t.user_id !== id);
+
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("teachers", JSON.stringify(teachers));
+
+        renderTable();
+    }
+
+    renderTable();
+</script>
+</body>
+</html>

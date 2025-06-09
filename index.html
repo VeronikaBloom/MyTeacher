@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>МойПедагог — Главная</title>
+<style>
+    body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #fff);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    }
+
+    header {
+    background-color: #006893;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+    }
+
+    .logo-img {
+    height: 45px;
+    }
+
+    nav {
+    display: flex;
+    gap: 20px;
+    }
+
+    nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #1d5deb;
+    transition: background-color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+    background-color: #184cbc;
+    transform: scale(1.05);
+    }
+
+    main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    }
+
+    .intro {
+    background: linear-gradient(135deg, #dff1f5, #ffffff);
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 50px;
+    }
+
+    .intro h1 {
+    color: #006893;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    }
+
+    .intro p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    }
+
+    .main-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #1d5deb;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    }
+
+    .main-btn:hover {
+    background-color: #184cbc;
+    }
+
+    .motto {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 25px;
+    }
+
+    .section-line {
+    border: none;
+    height: 2px;
+    background: #006893;
+    width: 80%;
+    margin: 40px auto;
+    }
+
+    .instructions h2, .features h2 {
+    text-align: center;
+    color: #006893;
+    margin-bottom: 30px;
+    }
+
+    .block-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    }
+
+    .block {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    }
+
+    .block-icon {
+    width: 50px;
+    margin-bottom: 10px;
+    }
+
+    .block h3 {
+    color: #006893;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    }
+
+    .block ol {
+    text-align: left;
+    padding-left: 20px;
+    }
+
+    .features {
+    text-align: center;
+    margin-top: 50px;
+    }
+
+    .feature-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+    color: #333;
+    }
+
+    .feature-list li {
+    margin: 10px 0;
+    }
+
+    footer {
+    background-color: #006893;
+    color: white;
+    padding: 25px 20px;
+    }
+
+    .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    }
+
+    .footer-info p {
+    margin: 5px 0;
+    }
+
+    .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+    font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .block-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .block {
+        width: 90%;
+    }
+    }
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">
+    <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
+    <span>МойПедагог</span>
+</div>
+<nav>
+    <a href="login.html">Вход</a>
+    <a href="register.html">Регистрация</a>
+</nav>
+</header>
+
+<main>
+<section class="intro">
+    <h1>Добро пожаловать!</h1>
+    <p>Автоматизируйте работу преподавателей и студентов Ленинградского социально-педагогического колледжа.<br>
+    Преподаватели могут заполнять и редактировать анкеты, добавлять учебную информацию, а студенты — просматривать анкеты преподавателей и получать уведомления.</p>
+    <a href="register.html" class="main-btn">Начать работу</a>
+    <blockquote class="motto">"Образование начинается с педагога. Мы делаем его доступным."</blockquote>
+</section>
+
+<hr class="section-line">
+
+<section class="instructions">
+    <h2>Инструкции по использованию системы</h2>
+    <div class="block-container">
+    <div class="block">
+        <img src="img/teacher-icon.png" alt="Преподаватель" class="block-icon">
+        <h3>Для преподавателей</h3>
+        <ol>
+        <li>Зарегистрируйтесь на платформе</li>
+        <li>Заполните свой профиль</li>
+        <li>Добавьте дисциплины и методы преподавания</li>
+        <li>Обновляйте информацию по мере необходимости</li>
+        <li>Следите за обратной связью</li>
+        </ol>
+    </div>
+    <div class="block">
+        <img src="img/student-icon.png" alt="Студент" class="block-icon">
+        <h3>Для студентов</h3>
+        <ol>
+        <li>Войдите в систему</li>
+        <li>Выберите преподавателя из списка</li>
+        <li>Ознакомьтесь с анкетой и расписанием</li>
+        <li>Сохраняйте важную информацию</li>
+        <li>Следите за обновлениями</li>
+        </ol>
+    </div>
+    </div>
+</section>
+
+<hr class="section-line">
+
+<section class="features">
+    <h2>Почему выбирают МойПедагог</h2>
+    <ul class="feature-list">
+    <li>✔ Удобный и понятный интерфейс</li>
+    <li>✔ Быстрый доступ к актуальной информации</li>
+    <li>✔ Прозрачное расписание занятий</li>
+    <li>✔ Вся информация — в одном месте</li>
+    </ul>
+</section>
+</main>
+
+<footer>
+<div class="footer-content">
+    <div class="footer-info">
+    <p><strong>Колледж:</strong> ГАПОУ КК ЛСПК — Ленинградский социально-педагогический колледж</p>
+    <p><strong>Адрес:</strong> 353740, Краснодарский край, ст. Ленинградская, ул. Красная, 152</p>
+    <p><strong>Режим работы:</strong> Пн–Сб: 08:00–17:00</p>
+    <p><strong>Телефон:</strong> +7 (861) 457-37-21</p>
+    <p><strong>Email:</strong> lpk31@mail.ru</p>
+    </div>
+    <div class="footer-bottom">
+    <p>&copy; 2025 МойПедагог. Все права защищены.</p>
+    </div>
+</div>
+</footer>
+
+</body>
+</html>

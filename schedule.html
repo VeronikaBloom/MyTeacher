@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписание преподавателя</title>
+    <link rel="stylesheet" href="schedule.css">
+    <style>
+        body { font-family: sans-serif; margin: 0; background: #f8f9fa; }
+        header { background: #343a40; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; }
+        header .logo { font-weight: bold; font-size: 1.2rem; }
+        header nav a { color: white; margin-left: 1rem; text-decoration: none; }
+        .container { max-width: 900px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+        .form-control, select { width: 100%; padding: 8px; margin-bottom: 10px; }
+        .btn { padding: 8px 12px; margin: 4px; cursor: pointer; border: none; border-radius: 4px; }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-small { font-size: 0.9rem; padding: 4px 8px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background: #e9ecef; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">ГАППОУ КК ЛСПК</div>
+    <nav>
+        <a href="teacher_dashboard.html" class="btn btn-secondary">Назад</a>
+        <a href="login.html" class="btn btn-secondary">Выйти</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2 id="form-title">Добавить занятие</h2>
+
+    <div id="error-msg" style="color: red; font-weight: bold;"></div>
+
+    <form id="schedule-form">
+        <label>День недели</label>
+        <select id="day_of_week" class="form-control" required>
+            <option value="">Выберите</option>
+            <option>Понедельник</option>
+            <option>Вторник</option>
+            <option>Среда</option>
+            <option>Четверг</option>
+            <option>Пятница</option>
+            <option>Суббота</option>
+        </select>
+
+        <label>Номер урока</label>
+        <input type="number" id="lesson_number" class="form-control" min="1" max="12" required>
+
+        <label>Предмет</label>
+        <input type="text" id="subject" class="form-control" required>
+
+        <label>Аудитория</label>
+        <input type="text" id="room" class="form-control" required>
+
+        <label>Группа</label>
+        <input type="text" id="group" class="form-control" required>
+
+        <input type="hidden" id="edit_index">
+        <button type="submit" class="btn btn-primary" id="submit-btn">Добавить</button>
+    </form>
+
+    <h3>Текущее расписание</h3>
+    <table id="schedule-table">
+        <thead>
+        <tr>
+            <th>День</th>
+            <th>Урок</th>
+            <th>Предмет</th>
+            <th>Аудитория</th>
+            <th>Группа</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    const form = document.getElementById("schedule-form");
+    const tableBody = document.querySelector("#schedule-table tbody");
+    const errorMsg = document.getElementById("error-msg");
+    let schedule = JSON.parse(localStorage.getItem("teacher_schedule")) || [];
+
+    function renderTable() {
+        tableBody.innerHTML = "";
+        const order = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+
+        schedule.sort((a, b) => {
+            return order.indexOf(a.day_of_week) - order.indexOf(b.day_of_week)
+                || a.lesson_number - b.lesson_number;
+        });
+
+        schedule.forEach((item, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.day_of_week}</td>
+                <td>${item.lesson_number}</td>
+                <td>${item.subject}</td>
+                <td>${item.room}</td>
+                <td>${item.group}</td>
+                <td>
+                    <button class="btn btn-small" onclick="editEntry(${index})">✏️</button>
+                    <button class="btn btn-small btn-danger" onclick="deleteEntry(${index})">🗑️</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        const day = document.getElementById("day_of_week").value;
+        const lesson = parseInt(document.getElementById("lesson_number").value);
+        const subject = document.getElementById("subject").value.trim();
+        const room = document.getElementById("room").value.trim();
+        const group = document.getElementById("group").value.trim();
+        const editIndex = document.getElementById("edit_index").value;
+
+        if (!day || !lesson || !subject || !room || !group) {
+            errorMsg.textContent = "Пожалуйста, заполните все поля корректно.";
+            return;
+        }
+
+        const entry = { day_of_week: day, lesson_number: lesson, subject, room, group };
+
+        if (editIndex === "") {
+            schedule.push(entry);
+        } else {
+            schedule[editIndex] = entry;
+            document.getElementById("submit-btn").textContent = "Добавить";
+            document.getElementById("form-title").textContent = "Добавить занятие";
+        }
+
+        localStorage.setItem("teacher_schedule", JSON.stringify(schedule));
+        form.reset();
+        document.getElementById("edit_index").value = "";
+        errorMsg.textContent = "";
+        renderTable();
+    };
+
+    function editEntry(index) {
+        const entry = schedule[index];
+        document.getElementById("day_of_week").value = entry.day_of_week;
+        document.getElementById("lesson_number").value = entry.lesson_number;
+        document.getElementById("subject").value = entry.subject;
+        document.getElementById("room").value = entry.room;
+        document.getElementById("group").value = entry.group;
+        document.getElementById("edit_index").value = index;
+        document.getElementById("submit-btn").textContent = "Обновить";
+        document.getElementById("form-title").textContent = "Редактировать запись";
+    }
+
+    function deleteEntry(index) {
+        if (confirm("Удалить запись?")) {
+            schedule.splice(index, 1);
+            localStorage.setItem("teacher_schedule", JSON.stringify(schedule));
+            renderTable();
+        }
+    }
+
+    renderTable();
+</script>
+</body>
+</html>

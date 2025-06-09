@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Регистрация</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="register.css">
+</head>
+<body class="bg-light">
+
+<header>
+<div class="logo">ГАППОУ КК ЛСПК</div>
+<nav>
+    <a href="index.html">Главная</a>
+</nav>
+</header>
+
+<div class="container">
+<h2>Регистрация</h2>
+<form id="registerForm">
+    <div class="form-group">
+    <label for="username">Имя пользователя</label>
+    <input type="text" id="username" required>
+    </div>
+
+    <div class="form-group">
+    <label for="password">Пароль</label>
+    <input type="password" id="password" required>
+    </div>
+
+    <div class="form-group">
+    <label for="role">Роль</label>
+    <select id="role" required>
+        <option value="">Выберите роль</option>
+        <option value="teacher">Преподаватель</option>
+        <option value="student">Студент</option>
+    </select>
+    </div>
+
+    <button type="submit">Зарегистрироваться</button>
+    <p><a href="login.html">Уже есть аккаунт?</a></p>
+</form>
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+event.preventDefault();
+
+const username = document.getElementById("username").value.trim();
+const password = document.getElementById("password").value;
+const role = document.getElementById("role").value;
+
+if (!username || !password || !role) {
+    alert("Заполните все поля.");
+    return;
+}
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+if (users.find(u => u.username === username)) {
+    alert("Пользователь с таким именем уже существует.");
+    return;
+}
+
+users.push({ username, password, role });
+localStorage.setItem("users", JSON.stringify(users));
+
+if (role === "teacher") {
+    const teacherProfiles = JSON.parse(localStorage.getItem("teacherProfiles")) || {};
+    teacherProfiles[username] = {
+    fullName: "",
+    disciplines: "",
+    schedule: []
+    };
+    localStorage.setItem("teacherProfiles", JSON.stringify(teacherProfiles));
+}
+
+alert("Регистрация прошла успешно!");
+window.location.href = "login.html";
+});
+</script>
+
+</body>
+</html>
