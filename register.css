@@ -21,14 +21,17 @@ header {
     text-align: left; /* Убираем центрирование */
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0; /* Убираем нижний отступ */
+    .logo {
     display: flex;
     align-items: center;
     gap: 10px;
-}
+    font-size: 2rem;
+    font-weight: bold;
+    }
+
+    .logo-img {
+    height: 45px;
+    }
 
 nav {
     display: flex;
