@@ -10,20 +10,53 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: space-between; /* Лого слева, меню справа */
+    align-items: center;
     background-color: rgb(0, 104, 147);
     color: white;
-    padding: 15px 10px; /* Уменьшаем отступы */
-    text-align: center;
+    padding: 15px 20px; /* Можно чуть увеличить отступы */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
+    text-align: left; /* Убираем центрирование */
 }
 
 .logo {
-    font-size: 1.5rem; /* Уменьшаем размер лого */
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 0; /* Убираем нижний отступ */
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
+nav {
+    display: flex;
+    justify-content: flex-end; /* Меню справа */
+    gap: 10px; /* Расстояние между кнопками */
+    flex-wrap: nowrap;
+    max-height: none; /* Убираем ограничение по высоте для десктопа */
+    overflow: visible;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px; /* Меньше padding, чтобы кнопка была маленькой */
+    border-radius: 12px;
+    background-color: rgb(29, 93, 235);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 0.85rem; /* Меньший размер шрифта */
+    flex: 0 0 auto; /* Убираем растяжение */
+    min-width: auto; /* Убираем минимальную ширину */
+    text-align: center;
+    margin: 0; /* Убираем вертикальные отступы */
+}
+
+nav a:hover {
+    background-color: rgb(24, 76, 188);
+    transform: scale(1.05);
+}
 /* Мобильное меню */
 .menu-toggle {
     display: none; /* Скрыто по умолчанию */
