@@ -6,481 +6,520 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <style>
-    /* === ШАПКА === */
-       body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #fff);
-    margin: 0;
-    padding: 0;
-    color: #333;
+    /* === ОБЩИЕ СТИЛИ === */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #fff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
     }
 
+    /* === ШАПКА === */
     header {
-    background-color: #006893;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    flex-wrap: wrap;
-    position: relative; /* Для позиционирования меню */
+      background-color: #006893;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      flex-wrap: wrap;
+      position: relative;
     }
 
     .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    z-index: 10; /* Чтобы лого было поверх меню */
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      z-index: 10;
     }
 
     .logo-img {
-    height: 45px;
-    }
-
-    /* Стили для обычной навигации */
-    nav {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    }
-
-    nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 25px;
-    background-color: #1d5deb;
-    transition: background-color 0.3s, transform 0.3s;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    }
-
-    nav a:hover {
-    background-color: #184cbc;
-    transform: scale(1.05);
+      height: 40px;
     }
 
     /* Кнопка гамбургер-меню */
     .menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 10;
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 10;
     }
 
     .menu-toggle span {
-    width: 100%;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
     }
 
     /* Мобильное меню */
     .mobile-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #006893;
-    flex-direction: column;
-    padding: 10px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 5;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #006893;
+      flex-direction: column;
+      padding: 10px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 5;
     }
 
     .mobile-menu a {
-    color: white;
-    text-decoration: none;
-    padding: 12px 20px;
-    transition: background-color 0.3s;
-    font-size: 1rem;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      transition: background-color 0.3s;
+      font-size: 1rem;
     }
 
     .mobile-menu a:hover {
-    background-color: #1d5deb;
+      background-color: #1d5deb;
     }
 
-    main {
-    padding: 30px 15px;
-    max-width: 1200px;
-    margin: 0 auto;
+    /* === ОСНОВНОЕ СОДЕРЖИМОЕ === */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
     }
 
-    .intro {
-    background: linear-gradient(135deg, #dff1f5, #ffffff);
-    text-align: center;
-    padding: 30px 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 40px;
+    .form-title {
+      color: #006893;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      text-align: center;
     }
 
-    .intro h1 {
-    color: #006893;
-    font-size: 2rem;
-    margin-bottom: 15px;
+    /* Стили для формы */
+    .form-container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 40px;
     }
 
-    .intro p {
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto 15px;
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
     }
 
-    .main-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 25px;
-    font-size: 1rem;
-    background-color: #1d5deb;
-    color: white;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+    .form-col {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 0 15px;
+      box-sizing: border-box;
     }
 
-    .main-btn:hover {
-    background-color: #184cbc;
+    .form-group {
+      margin-bottom: 20px;
     }
 
-    .motto {
-    font-style: italic;
-    font-size: 1rem;
-    color: #555;
-    margin-top: 20px;
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #006893;
     }
 
-    .section-line {
-    border: none;
-    height: 2px;
-    background: #006893;
-    width: 80%;
-    margin: 30px auto;
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
     }
 
-    .instructions h2, .features h2 {
-    text-align: center;
-    color: #006893;
-    margin-bottom: 25px;
-    font-size: 1.5rem;
+    .form-control:focus {
+      border-color: #1d5deb;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(29, 93, 235, 0.2);
     }
 
-    .block-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    textarea.form-control {
+      min-height: 100px;
+      resize: vertical;
     }
 
-    .block {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    flex: 0 0 auto;
+    /* Кнопки формы */
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
     }
 
-    .block-icon {
-    width: 50px;
-    margin-bottom: 10px;
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      border: none;
+      text-align: center;
     }
 
-    .block h3 {
-    color: #006893;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    .btn-success {
+      background-color: #28a745;
+      color: white;
     }
 
-    .block ol {
-    text-align: left;
-    padding-left: 20px;
+    .btn-success:hover {
+      background-color: #218838;
     }
 
-    .features {
-    text-align: center;
-    margin-top: 40px;
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
     }
 
-    .feature-list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 15px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: left;
+    .btn-secondary:hover {
+      background-color: #5a6268;
     }
 
-    .feature-list li {
-    background: #f8fdff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    margin: 5px 0;
+    /* Превью фото */
+    #photoPreview {
+      margin-top: 15px;
     }
 
+    #photoPreview img {
+      max-width: 200px;
+      max-height: 200px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    /* === ПОДВАЛ === */
     footer {
-    background-color: #006893;
-    color: white;
-    padding: 20px 15px;
-    font-size: 0.9rem;
+      background-color: #006893;
+      color: white;
+      padding: 20px 15px;
+      font-size: 0.9rem;
     }
 
     .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .footer-info p {
-    margin: 5px 0;
+      margin: 5px 0;
     }
 
     .footer-bottom {
-    text-align: center;
-    margin-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 10px;
-    font-size: 0.85rem;
+      text-align: center;
+      margin-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 10px;
+      font-size: 0.85rem;
     }
     
-    /* АДАПТИВНОСТЬ */
+    /* === АДАПТИВНОСТЬ === */
+    @media (max-width: 992px) {
+      .form-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      
+      .form-container {
+        padding: 20px;
+      }
+    }
+
     @media (max-width: 768px) {
-    /* Скрываем обычную навигацию на мобильных */
-    nav {
-        display: none;
-    }
-    
-    /* Показываем кнопку гамбургера */
-    .menu-toggle {
+      /* Гамбургер меню */
+      .menu-toggle {
         display: flex;
-    }
-    
-    header {
-        flex-direction: row;
-        align-items: center;
+      }
+      
+      header {
         padding: 10px 15px;
-    }
+      }
 
-    .logo {
-        font-size: 1.5rem;
-        gap: 8px;
-    }
+      .logo {
+        font-size: 1.3rem;
+      }
 
-    .logo-img {
+      .logo-img {
         height: 35px;
-    }
+      }
 
-    .intro h1 {
-        font-size: 1.7rem;
-    }
-
-    .feature-list {
-        grid-template-columns: 1fr;
-    }
+      .form-title {
+        font-size: 1.5rem;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
     }
 
     @media (max-width: 480px) {
-    .logo {
-        font-size: 1.3rem;
-    }
+      .logo {
+        font-size: 1.2rem;
+      }
 
-    .logo-img {
+      .logo-img {
         height: 30px;
-    }
-
-    .block {
-        min-width: 100%;
-    }
-
-    .feature-list li {
-        padding: 12px;
-    }
+      }
+      
+      .form-container {
+        padding: 15px;
+      }
+      
+      .form-group {
+        margin-bottom: 15px;
+      }
     }
 
     /* Анимация для кнопки меню */
     .menu-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+      transform: translateY(8px) rotate(45deg);
     }
 
     .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
+      opacity: 0;
     }
 
     .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+      transform: translateY(-8px) rotate(-45deg);
     }
 
     /* Показываем мобильное меню когда активно */
     .mobile-menu.active {
-    display: flex;
-    }
-
-
-    /* === ФОРМА === */
-    .form-control {
-      border-radius: 8px;
-    }
-
-    /* === АДАПТИВНОСТЬ === */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      header nav {
-        margin-top: 10px;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      header nav a {
-        flex: 1 1 auto;
-        text-align: center;
-        margin-left: 0;
-      }
-
-      .container {
-        padding: 15px;
-      }
+      display: flex;
     }
   </style>
 </head>
 
 <body>
   <header>
-<div class="logo">
-    <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
-    <span>МойПедагог</span>
-</div>
+    <div class="logo">
+      <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
+      <span>МойПедагог</span>
+    </div>
+    
+    <!-- Кнопка гамбургер-меню -->
+    <button class="menu-toggle" aria-label="Меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <!-- Обычное меню (скрывается на мобильных) -->
     <nav>
-      <a href="teacher_dashboard.html" class="btn btn-secondary">Назад</a>
+      <a href="teacher_dashboard.html" class="btn-secondary">Назад</a>
     </nav>
+    
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+      <a href="teacher_dashboard.html">Назад</a>
+    </div>
   </header>
 
-  <div class="container mt-5">
-    <h2>Редактирование анкеты преподавателя</h2>
-    <form id="editForm">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="last_name" class="form-label">Фамилия</label>
-            <input type="text" name="last_name" class="form-control">
+  <div class="container">
+    <h2 class="form-title">Редактирование анкеты преподавателя</h2>
+    
+    <div class="form-container">
+      <form id="editForm">
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              <label for="last_name" class="form-label">Фамилия</label>
+              <input type="text" name="last_name" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="first_name" class="form-label">Имя</label>
+              <input type="text" name="first_name" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="middle_name" class="form-label">Отчество</label>
+              <input type="text" name="middle_name" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="birth_date" class="form-label">Дата рождения</label>
+              <input type="date" name="birth_date" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" name="email" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="phone" class="form-label">Телефон</label>
+              <input type="text" name="phone" class="form-control">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="first_name" class="form-label">Имя</label>
-            <input type="text" name="first_name" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="middle_name" class="form-label">Отчество</label>
-            <input type="text" name="middle_name" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="birth_date" class="form-label">Дата рождения</label>
-            <input type="date" name="birth_date" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label">Телефон</label>
-            <input type="text" name="phone" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="position" class="form-label">Должность</label>
-            <input type="text" name="position" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="department" class="form-label">Кафедра</label>
-            <input type="text" name="department" class="form-control">
+          
+          <div class="form-col">
+            <div class="form-group">
+              <label for="position" class="form-label">Должность</label>
+              <input type="text" name="position" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="department" class="form-label">Кафедра</label>
+              <input type="text" name="department" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="education" class="form-label">Образование</label>
+              <textarea name="education" class="form-control"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="qualification" class="form-label">Квалификация</label>
+              <textarea name="qualification" class="form-control"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="work_experience" class="form-label">Стаж работы</label>
+              <input type="text" name="work_experience" class="form-control">
+            </div>
           </div>
         </div>
-
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="education" class="form-label">Образование</label>
-            <textarea name="education" class="form-control"></textarea>
+        
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              <label for="subjects" class="form-label">Предметы</label>
+              <textarea name="subjects" class="form-control"></textarea>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="qualification" class="form-label">Квалификация</label>
-            <textarea name="qualification" class="form-control"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="work_experience" class="form-label">Стаж работы</label>
-            <input type="text" name="work_experience" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="subjects" class="form-label">Предметы</label>
-            <textarea name="subjects" class="form-control"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="teaching_methods" class="form-label">Методы преподавания</label>
-            <textarea name="teaching_methods" class="form-control"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="scientific_activity" class="form-label">Научная деятельность</label>
-            <textarea name="scientific_activity" class="form-control"></textarea>
+          
+          <div class="form-col">
+            <div class="form-group">
+              <label for="teaching_methods" class="form-label">Методы преподавания</label>
+              <textarea name="teaching_methods" class="form-control"></textarea>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="profile_photo" class="form-label">Фото профиля</label>
-        <input type="file" name="profile_photo" class="form-control">
-        <div id="photoPreview" class="mt-2"></div>
-      </div>
-
-      <button type="submit" class="btn btn-success">Сохранить</button>
-      <a href="teacher_dashboard.html" class="btn btn-secondary">Назад</a>
-    </form>
+        
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              <label for="scientific_activity" class="form-label">Научная деятельность</label>
+              <textarea name="scientific_activity" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="profile_photo" class="form-label">Фото профиля</label>
+          <input type="file" name="profile_photo" id="photoInput" class="form-control">
+          <div id="photoPreview" class="mt-2"></div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success">Сохранить изменения</button>
+          <a href="teacher_dashboard.html" class="btn btn-secondary">Отмена</a>
+        </div>
+      </form>
+    </div>
   </div>
 
+  <footer>
+    <div class="footer-content">
+      <div class="footer-info">
+        <p><strong>Колледж:</strong> ГАПОУ КК ЛСПК — Ленинградский социально-педагогический колледж</p>
+        <p><strong>Адрес:</strong> 353740, Краснодарский край, ст. Ленинградская, ул. Красная, 152</p>
+        <p><strong>Режим работы:</strong> Пн–Сб: 08:00–17:00</p>
+        <p><strong>Телефон:</strong> +7 (861) 457-37-21</p>
+        <p><strong>Email:</strong> lpk31@mail.ru</p>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 МойПедагог. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
-
-    window.onload = () => {
-      const teacher = JSON.parse(localStorage.getItem("teacher_" + currentUser.username)) || {};
-      const form = document.forms["editForm"];
-      for (let key in teacher) {
-        if (form[key]) form[key].value = teacher[key];
+    // Скрипт для гамбургер-меню
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      
+      menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
+      
+      // Закрываем меню при клике на ссылку
+      const menuLinks = mobileMenu.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          menuToggle.classList.remove('active');
+        });
+      });
+      
+      // Загрузка данных преподавателя
+      const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+      const teacherData = JSON.parse(localStorage.getItem("teacher_" + currentUser.username)) || {};
+      
+      // Заполнение формы данными
+      const form = document.getElementById('editForm');
+      for (let key in teacherData) {
+        if (form[key]) form[key].value = teacherData[key];
       }
-    };
-
-    document.getElementById("editForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const form = event.target;
-      const updatedTeacher = {};
-      for (let el of form.elements) {
-        if (el.name && el.type !== "file") {
-          updatedTeacher[el.name] = el.value;
+      
+      // Обработчик отправки формы
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const updatedTeacher = {};
+        for (let el of form.elements) {
+          if (el.name && el.type !== "file") {
+            updatedTeacher[el.name] = el.value;
+          }
         }
-      }
-
-      localStorage.setItem("teacher_" + currentUser.username, JSON.stringify(updatedTeacher));
-      alert("Анкета сохранена!");
-      window.location.href = "teacher_dashboard.html";
+        
+        localStorage.setItem("teacher_" + currentUser.username, JSON.stringify(updatedTeacher));
+        alert("Анкета успешно обновлена!");
+        window.location.href = "teacher_dashboard.html";
+      });
+      
+      // Превью загружаемого фото
+      const photoInput = document.getElementById('photoInput');
+      const photoPreview = document.getElementById('photoPreview');
+      
+      photoInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            photoPreview.innerHTML = '<img src="' + e.target.result + '" alt="Превью фото">';
+          }
+          
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
     });
   </script>
 </body>
