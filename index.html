@@ -16,18 +16,19 @@
     header {
     background-color: #006893;
     color: white;
-    padding: 20px;
+    padding: 15px 20px; /* Уменьшил отступы */
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap; /* Разрешаем перенос элементов */
     }
 
     .logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 2rem;
+    font-size: 1.8rem; /* Уменьшил размер */
     font-weight: bold;
     }
 
@@ -37,16 +38,18 @@
 
     nav {
     display: flex;
-    gap: 20px;
+    gap: 15px; /* Уменьшил промежутки */
+    margin-top: 10px; /* Отступ сверху */
     }
 
     nav a {
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 10px 15px; /* Уменьшил отступы */
     border-radius: 25px;
     background-color: #1d5deb;
     transition: background-color 0.3s, transform 0.3s;
+    font-size: 0.9rem; /* Уменьшил размер шрифта */
     }
 
     nav a:hover {
@@ -55,7 +58,7 @@
     }
 
     main {
-    padding: 40px 20px;
+    padding: 30px 15px; /* Уменьшил отступы */
     max-width: 1200px;
     margin: 0 auto;
     }
@@ -63,30 +66,30 @@
     .intro {
     background: linear-gradient(135deg, #dff1f5, #ffffff);
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px 15px; /* Уменьшил отступы */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     }
 
     .intro h1 {
     color: #006893;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2rem; /* Уменьшил размер */
+    margin-bottom: 15px;
     }
 
     .intro p {
-    font-size: 1.1rem;
+    font-size: 1rem; /* Уменьшил размер */
     line-height: 1.6;
     max-width: 800px;
-    margin: 0 auto 20px;
+    margin: 0 auto 15px;
     }
 
     .main-btn {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 12px 25px;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Уменьшил размер */
     background-color: #1d5deb;
     color: white;
     border-radius: 30px;
@@ -100,9 +103,9 @@
 
     .motto {
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Уменьшил размер */
     color: #555;
-    margin-top: 25px;
+    margin-top: 20px;
     }
 
     .section-line {
@@ -110,13 +113,14 @@
     height: 2px;
     background: #006893;
     width: 80%;
-    margin: 40px auto;
+    margin: 30px auto; /* Уменьшил отступ */
     }
 
     .instructions h2, .features h2 {
     text-align: center;
     color: #006893;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    font-size: 1.5rem; /* Уменьшил размер */
     }
 
     .block-container {
@@ -134,6 +138,8 @@
     width: 300px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
+    flex: 1; /* Гибкая ширина */
+    min-width: 280px; /* Минимальная ширина */
     }
 
     .block-icon {
@@ -143,7 +149,7 @@
 
     .block h3 {
     color: #006893;
-    font-size: 1.3rem;
+    font-size: 1.2rem; /* Уменьшил размер */
     margin-bottom: 10px;
     }
 
@@ -154,24 +160,34 @@
 
     .features {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 40px; /* Уменьшил отступ */
     }
 
+    /* ИСПРАВЛЕНИЕ ДЛЯ ПРЕИМУЩЕСТВ */
     .feature-list {
     list-style: none;
     padding: 0;
-    font-size: 1.1rem;
-    color: #333;
+    display: grid; /* Используем сетку */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивная сетка */
+    gap: 15px; /* Промежутки */
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left; /* Выравнивание по левому краю */
     }
 
     .feature-list li {
-    margin: 10px 0;
+    background: #f8fdff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin: 5px 0;
     }
 
     footer {
     background-color: #006893;
     color: white;
-    padding: 25px 20px;
+    padding: 20px 15px; /* Уменьшил отступы */
+    font-size: 0.9rem; /* Уменьшил размер шрифта */
     }
 
     .footer-content {
@@ -185,77 +201,76 @@
 
     .footer-bottom {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-top: 10px;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Уменьшил размер */
     }
 
+    /* АДАПТИВНОСТЬ */
     @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-end;
+    header {
+        flex-direction: row; /* Оставляем в строке */
+        align-items: center;
+        padding: 10px 15px;
     }
 
-    .block-container {
-        flex-direction: column;
-        align-items: center;
+    .logo {
+        font-size: 1.5rem; /* Уменьшаем размер лого */
+        gap: 8px;
+    }
+
+    .logo-img {
+        height: 35px; /* Уменьшаем логотип */
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    nav a {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .intro h1 {
+        font-size: 1.7rem;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr; /* Одна колонка на мобильных */
+    }
+    }
+
+    @media (max-width: 480px) {
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .logo-img {
+        height: 30px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        margin: 3px 0;
     }
 
     .block {
-        width: 90%;
-    }
-    }
-    @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-end;
-        width: 100%;
-        margin-top: 10px;
+        min-width: 100%; /* На всю ширину */
     }
 
-    nav a {
-        width: 90%;
-        text-align: center;
-        margin: 5px 0;
-        padding: 12px 0;
+    .feature-list li {
+        padding: 12px;
     }
-
-    .logo {
-        flex-direction: column;
-        align-items: flex-start;
     }
-
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-end;
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    nav a {
-        width: 90%;
-        text-align: center;
-        margin: 5px 0;
-        padding: 12px 0;
-    }
-
-    .logo {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
 </style>
 </head>
 <body>
@@ -265,6 +280,11 @@
     <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
     <span>МойПедагог</span>
 </div>
+<nav>
+    <a href="login.html">Вход</a>
+    <a href="register.html">Регистрация</a>
+    <a href="about.html">О системе</a>
+</nav>
 </header>
 
 <main>
@@ -309,12 +329,14 @@
 <hr class="section-line">
 
 <section class="features">
-    <h2>Почему выбирают МойПедагог</h2>
+    <h2>Преимущества системы</h2>
     <ul class="feature-list">
     <li>✔ Удобный и понятный интерфейс</li>
     <li>✔ Быстрый доступ к актуальной информации</li>
     <li>✔ Прозрачное расписание занятий</li>
     <li>✔ Вся информация — в одном месте</li>
+    <li>✔ Автоматические уведомления</li>
+    <li>✔ Безопасное хранение данных</li>
     </ul>
 </section>
 </main>
