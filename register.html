@@ -9,13 +9,14 @@
 <body class="bg-light">
 
 <header>
-<div class="logo">
-    <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
-    <span>МойПедагог</span>
-</div>
-<nav>
-    <a href="index.html">Главная</a>
-</nav>
+  <div class="logo">
+      <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
+      <span>МойПедагог</span>
+  </div>
+  <button class="menu-toggle" id="menuToggle">&#9776;</button>
+  <nav>
+      <a href="index.html">Главная</a>
+  </nav>
 </header>
 
 <div class="container">
@@ -81,6 +82,11 @@ if (role === "teacher") {
 alert("Регистрация прошла успешно!");
 window.location.href = "login.html";
 });
+
+document.getElementById('menuToggle').addEventListener('click', function() {
+    document.querySelector('nav').classList.toggle('active');
+});
+
 </script>
 
 </body>
