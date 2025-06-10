@@ -1,58 +1,377 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Панель администратора</title>
-    <link rel="stylesheet" href="admin_dashboard.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+  <meta charset="UTF-8">
+  <title>Панель администратора</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    /* === ОБЩИЕ СТИЛИ === */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #fff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
 
-        table thead {
-            background-color: #006893;
-            color: white;
-        }
+    /* === ШАПКА === */
+    header {
+      background-color: #006893;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      flex-wrap: wrap;
+      position: relative;
+    }
 
-        table th, table td {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      z-index: 10;
+    }
 
-        table tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+    .logo-img {
+      height: 40px;
+    }
 
-        table tbody tr:hover {
-            background-color: #e0f7fa;
-        }
+    /* Кнопка гамбургер-меню */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 10;
+    }
 
-        .btn {
-            padding: 6px 12px;
-            border-radius: 4px;
-            text-decoration: none;
-            color: white;
-            margin-right: 5px;
-            font-size: 0.9rem;
-        }
+    .menu-toggle span {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
 
-        .btn-info { background-color: #17a2b8; }
-        .btn-primary { background-color: #007bff; }
-        .btn-danger { background-color: #dc3545; }
-        .btn-secondary { background-color: #6c757d; }
-    </style>
+    /* Мобильное меню */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #006893;
+      flex-direction: column;
+      padding: 10px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 5;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      transition: background-color 0.3s;
+      font-size: 1rem;
+    }
+
+    .mobile-menu a:hover {
+      background-color: #1d5deb;
+    }
+
+    /* === ОСНОВНОЕ СОДЕРЖИМОЕ === */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .form-title {
+      color: #006893;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    /* Стили для формы */
+    .form-container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+    }
+
+    .form-col {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #006893;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+
+    .form-control:focus {
+      border-color: #1d5deb;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(29, 93, 235, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* Кнопки формы */
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+
+    /* Основная кнопка - синяя как в дизайне */
+    .btn-primary {
+      background-color: #1d5deb;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #184cbc;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+
+    /* Кнопка "Назад" в шапке */
+    .back-btn {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 25px;
+      background-color: #1d5deb;
+      transition: background-color 0.3s, transform 0.3s;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .back-btn:hover {
+      background-color: #184cbc;
+      transform: scale(1.05);
+    }
+
+    /* Превью фото */
+    #photoPreview {
+      margin-top: 15px;
+    }
+
+    #photoPreview img {
+      max-width: 200px;
+      max-height: 200px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    /* === ПОДВАЛ === */
+    footer {
+      background-color: #006893;
+      color: white;
+      padding: 20px 15px;
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-info p {
+      margin: 5px 0;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 10px;
+      font-size: 0.85rem;
+    }
+    
+    /* === АДАПТИВНОСТЬ === */
+    @media (max-width: 992px) {
+      .form-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      
+      .form-container {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Гамбургер меню */
+      .menu-toggle {
+        display: flex;
+      }
+      
+      header {
+        padding: 10px 15px;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      .logo-img {
+        height: 35px;
+      }
+
+      .form-title {
+        font-size: 1.5rem;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      /* Скрываем обычную кнопку "Назад" на мобильных */
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      .logo-img {
+        height: 30px;
+      }
+      
+      .form-container {
+        padding: 15px;
+      }
+      
+      .form-group {
+        margin-bottom: 15px;
+      }
+      
+      /* Мобильное меню - кнопка "Назад" */
+      .mobile-menu .back-btn {
+        background: transparent;
+        border: none;
+        padding: 12px 20px;
+        text-align: left;
+        border-radius: 0;
+        color: white;
+      }
+    }
+
+    /* Анимация для кнопки меню */
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Показываем мобильное меню когда активно */
+    .mobile-menu.active {
+      display: flex;
+    }
+  </style>
 </head>
+
 <body>
-<header>
-    <div class="logo">PedBoard</div>
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
+      <span>МойПедагог</span>
+    </div>
+    
+    <!-- Кнопка гамбургер-меню -->
+    <button class="menu-toggle" aria-label="Меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <!-- Обычное меню (скрывается на мобильных) -->
     <nav>
-        <a href="index.html" class="btn btn-secondary">Выйти</a>
+      <a href="teacher_dashboard.html" class="back-btn">Назад</a>
     </nav>
-</header>
+    
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+      <a href="teacher_dashboard.html" class="back-btn">Назад</a>
+    </div>
+  </header>
 <div class="container">
     <h1>Панель администратора</h1>
     <p>Добро пожаловать, Администратор! Здесь вы можете управлять пользователями.</p>
