@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>О системе — МойПедагог</title>
+  <link rel="stylesheet" href="student_dashboard.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #f0faff, #ffffff);
+      color: #333;
+    }
+
+    header {
+      background-color: #006893;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 25px;
+      background-color: #1d5deb;
+      transition: 0.3s;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      background-color: #184cbc;
+      transform: scale(1.05);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1, h2 {
+      color: #006893;
+      text-align: center;
+    }
+
+    section {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+      padding: 20px;
+    }
+
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+
+    .info-block {
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background-color: #006893;
+      color: white;
+      padding: 20px 15px;
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 10px;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">МойПедагог</div>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="login.html">Вход</a>
+    <a href="register.html">Регистрация</a>
+  </nav>
+</header>
+
+<main>
+  <h1>О системе "МойПедагог"</h1>
+
+  <section>
+    <h2>Назначение системы</h2>
+    <p>Информационная система <strong>«МойПедагог»</strong> разработана для автоматизации взаимодействия между преподавателями и студентами ГАПОУ КК ЛСПК (Ленинградского социально-педагогического колледжа).</p>
+    <p>Она позволяет:</p>
+    <ul>
+      <li>преподавателям заполнять и редактировать анкеты, добавлять информацию о себе и своем расписании;</li>
+      <li>студентам — просматривать анкеты преподавателей и их актуальное расписание занятий.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Функции и возможности</h2>
+    <div class="info-block">
+      <h3>Для преподавателей:</h3>
+      <ol>
+        <li>Регистрация по роли «Преподаватель»</li>
+        <li>Заполнение анкеты: ФИО, должность, опыт работы, квалификация и т.д.</li>
+        <li>Добавление и редактирование расписания</li>
+        <li>Редактирование профиля в любое время</li>
+      </ol>
+    </div>
+
+    <div class="info-block">
+      <h3>Для студентов:</h3>
+      <ol>
+        <li>Авторизация по роли «Студент»</li>
+        <li>Просмотр списка преподавателей</li>
+        <li>Переход к анкетам и расписаниям преподавателей</li>
+        <li>Удобный интерфейс для поиска информации</li>
+      </ol>
+    </div>
+
+    <div class="info-block">
+      <h3>Для администратора:</h3>
+      <ol>
+        <li>Полный доступ ко всем анкетам</li>
+        <li>Возможность редактирования и удаления данных</li>
+        <li>Контроль корректности заполнения</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h2>Особенности реализации</h2>
+    <ul>
+      <li>Адаптивный интерфейс — система удобна для использования как на компьютерах, так и на смартфонах</li>
+      <li>Без использования серверных языков (PHP) и баз данных — все данные сохраняются в <strong>localStorage</strong></li>
+      <li>Простая регистрация по ролям</li>
+      <li>Фильтрация отображения — в расписании и списке анкет отображаются только заполненные строки</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Контактная информация</h2>
+    <p><strong>Учреждение:</strong> ГАПОУ КК ЛСПК — Ленинградский социально-педагогический колледж</p>
+    <p><strong>Адрес:</strong> 353740, Краснодарский край, ст. Ленинградская, ул. Красная, 152</p>
+    <p><strong>Режим работы:</strong> Пн–Сб: 08:00–17:00</p>
+    <p><strong>Телефон:</strong> +7 (861) 457-37-21</p>
+    <p><strong>Email:</strong> lpk31@mail.ru</p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2025 МойПедагог. Все права защищены.</p>
+    <div class="footer-bottom">
+      Система разработана для демонстрационного экзамена по специальности 09.02.07 "Информационные системы и программирование".
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
