@@ -123,14 +123,14 @@
     font-size: 1.5rem; /* Уменьшил размер */
     }
 
-    .block-container {
+.block-container {
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    }
+}
 
-    .block {
+.block {
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -138,9 +138,9 @@
     width: 300px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    flex: 1; /* Гибкая ширина */
-    min-width: 280px; /* Минимальная ширина */
-    }
+    flex: 0 0 auto; /* Не растягивать */
+}
+
 
     .block-icon {
     width: 50px;
