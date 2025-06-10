@@ -43,30 +43,32 @@
 </div>
 
 <script>
-const teacher = JSON.parse(localStorage.getItem("currentTeacher")) || {};
+const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
 
 window.onload = () => {
-const form = document.forms["editForm"];
-for (let key in teacher) {
+  const teacher = JSON.parse(localStorage.getItem("teacher_" + currentUser.username)) || {};
+  const form = document.forms["editForm"];
+  for (let key in teacher) {
     if (form[key]) form[key].value = teacher[key];
-}
+  }
 };
 
 document.getElementById("editForm").addEventListener("submit", function(event) {
-event.preventDefault();
+  event.preventDefault();
 
-const form = event.target;
-const updatedTeacher = {};
-for (let el of form.elements) {
+  const form = event.target;
+  const updatedTeacher = {};
+  for (let el of form.elements) {
     if (el.name && el.type !== "file") {
-    updatedTeacher[el.name] = el.value;
+      updatedTeacher[el.name] = el.value;
     }
-}
+  }
 
-localStorage.setItem("currentTeacher", JSON.stringify(updatedTeacher));
-alert("Анкета сохранена!");
-window.location.href = "teacher_dashboard.html";
+  localStorage.setItem("teacher_" + currentUser.username, JSON.stringify(updatedTeacher));
+  alert("Анкета сохранена!");
+  window.location.href = "teacher_dashboard.html";
 });
+
 </script>
 
 </body>
