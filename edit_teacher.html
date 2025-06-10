@@ -316,27 +316,22 @@
 
 <body>
   <header>
-    <div class="logo">
-      <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
-      <span>МойПедагог</span>
-    </div>
-    
-    <!-- Кнопка гамбургер-меню -->
-    <button class="menu-toggle" aria-label="Меню">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    
-    <!-- Обычное меню (скрывается на мобильных) -->
-    <nav>
-      <a href="teacher_dashboard.html" class="btn-secondary">Назад</a>
-    </nav>
-    
-    <!-- Мобильное меню -->
-    <div class="mobile-menu">
-      <a href="teacher_dashboard.html">Назад</a>
-    </div>
+    <header>
+  <div class="logo">
+    <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
+    <span>МойПедагог</span>
+  </div>
+  <button class="menu-toggle" aria-label="Меню">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav>
+    <a href="teacher_dashboard.html" class="btn btn-secondary">Назад</a>
+  </nav>
+  <div class="mobile-menu">
+    <a href="teacher_dashboard.html">Назад</a>
+  </div>
   </header>
 
   <div class="container">
@@ -436,10 +431,11 @@
           <div id="photoPreview" class="mt-2"></div>
         </div>
         
-        <div class="form-actions">
-          <button type="submit" class="btn btn-success">Сохранить изменения</button>
-          <a href="teacher_dashboard.html" class="btn btn-secondary">Отмена</a>
-        </div>
+<div class="form-actions">
+  <button type="submit" class="btn btn-success">Сохранить изменения</button>
+  <button type="button" class="btn btn-secondary" onclick="window.location.href='teacher_dashboard.html'">Отмена</button>
+</div>
+
       </form>
     </div>
   </div>
