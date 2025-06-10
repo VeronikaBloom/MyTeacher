@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>МойПедагог — Главная</title>
 <style>
-    body {
+       body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(135deg, #e0f7fa, #fff);
     margin: 0;
@@ -16,19 +16,19 @@
     header {
     background-color: #006893;
     color: white;
-    padding: 15px 20px; /* Уменьшил отступы */
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    flex-wrap: wrap; /* Разрешаем перенос элементов */
+    flex-wrap: wrap;
     }
 
     .logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.8rem; /* Уменьшил размер */
+    font-size: 1.8rem;
     font-weight: bold;
     }
 
@@ -38,18 +38,21 @@
 
     nav {
     display: flex;
-    gap: 15px; /* Уменьшил промежутки */
-    margin-top: 10px; /* Отступ сверху */
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap; /* Разрешаем перенос кнопок */
+    justify-content: flex-end; /* Выравнивание по правому краю */
     }
 
     nav a {
     color: white;
     text-decoration: none;
-    padding: 10px 15px; /* Уменьшил отступы */
+    padding: 10px 15px;
     border-radius: 25px;
     background-color: #1d5deb;
     transition: background-color 0.3s, transform 0.3s;
-    font-size: 0.9rem; /* Уменьшил размер шрифта */
+    font-size: 0.9rem;
+    white-space: nowrap; /* Запрещаем перенос текста */
     }
 
     nav a:hover {
@@ -206,28 +209,29 @@
     padding-top: 10px;
     font-size: 0.85rem; /* Уменьшил размер */
     }
-
+    
     /* АДАПТИВНОСТЬ */
     @media (max-width: 768px) {
     header {
-        flex-direction: row; /* Оставляем в строке */
+        flex-direction: row;
         align-items: center;
         padding: 10px 15px;
     }
 
     .logo {
-        font-size: 1.5rem; /* Уменьшаем размер лого */
+        font-size: 1.5rem;
         gap: 8px;
     }
 
     .logo-img {
-        height: 35px; /* Уменьшаем логотип */
+        height: 35px;
     }
 
     nav {
         width: 100%;
         justify-content: center;
         margin-top: 15px;
+        gap: 10px; /* Уменьшаем промежутки */
     }
 
     nav a {
@@ -240,7 +244,7 @@
     }
 
     .feature-list {
-        grid-template-columns: 1fr; /* Одна колонка на мобильных */
+        grid-template-columns: 1fr;
     }
     }
 
@@ -254,21 +258,44 @@
     }
 
     nav {
-        flex-wrap: wrap;
+        flex-direction: row; /* Горизонтальное расположение */
+        flex-wrap: wrap; /* Разрешаем перенос */
+        justify-content: center; /* Центрируем кнопки */
+        gap: 8px; /* Уменьшаем промежутки */
     }
 
     nav a {
-        width: 100%;
-        text-align: center;
+        width: auto; /* Автоматическая ширина */
+        min-width: 120px; /* Минимальная ширина */
+        padding: 8px 10px; /* Оптимальные отступы */
         margin: 3px 0;
+        font-size: 0.8rem; /* Уменьшаем шрифт */
+        text-align: center; /* Центрируем текст */
     }
 
     .block {
-        min-width: 100%; /* На всю ширину */
+        min-width: 100%;
     }
 
     .feature-list li {
         padding: 12px;
+    }
+    }
+
+    /* Новые медиа-запросы для очень маленьких экранов */
+    @media (max-width: 360px) {
+    nav a {
+        min-width: 100px; /* Еще меньше для узких экранов */
+        padding: 6px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .logo {
+        font-size: 1.1rem;
+    }
+    
+    .logo-img {
+        height: 25px;
     }
     }
 </style>
