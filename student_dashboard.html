@@ -226,14 +226,13 @@ table tr:nth-child(even) {
   </style>
 </head>
 <body>
-
 <header>
-<div class="logo">
+  <div class="logo">
     <img src="img/logo.png" alt="Логотип МойПедагог" class="logo-img">
     <span>МойПедагог</span>
-</div>
+  </div>
   <nav>
-    <a href="index.html">Выйти</a>
+    <a href="index.html" class="btn btn-secondary" id="logout-btn">Выйти</a>
   </nav>
 </header>
 
@@ -299,6 +298,15 @@ table tr:nth-child(even) {
       noDataMsg.textContent = "Пока нет заполненных анкет преподавателей.";
     }
   }
+
+  document.getElementById("logout-btn").addEventListener("click", function(e) {
+    // Если вы хотите очищать данные пользователя при выходе — раскомментируйте строку ниже:
+    // localStorage.removeItem("currentUser");
+
+    // Перенаправление на главную
+    window.location.href = "index.html";
+  });
+
 </script>
 
 </body>
