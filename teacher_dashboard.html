@@ -1,4 +1,3 @@
-<!-- teacher_dashboard.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -98,14 +97,18 @@
     }
 
     .table-wrapper {
+      margin-top: 10px;
+    }
+
+    .table-responsive {
       overflow-x: auto;
+      width: 100%;
     }
 
     .table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
-      min-width: 500px;
+      min-width: 600px;
     }
 
     .table th, .table td {
@@ -154,6 +157,22 @@
         width: 100%;
         text-align: center;
       }
+
+      .table th,
+      .table td {
+        font-size: 0.85rem;
+        padding: 6px;
+      }
+    }
+
+    /* стилизация прокрутки */
+    .table-responsive::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
     }
   </style>
 </head>
@@ -178,18 +197,20 @@
 
   <h3>Расписание</h3>
   <div class="table-wrapper">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>День</th>
-          <th>Урок</th>
-          <th>Предмет</th>
-          <th>Кабинет</th>
-          <th>Группа</th>
-        </tr>
-      </thead>
-      <tbody id="scheduleTable"></tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>День</th>
+            <th>Урок</th>
+            <th>Предмет</th>
+            <th>Кабинет</th>
+            <th>Группа</th>
+          </tr>
+        </thead>
+        <tbody id="scheduleTable"></tbody>
+      </table>
+    </div>
   </div>
 
   <a href="schedule.html" class="btn">Добавить расписание</a>
@@ -238,7 +259,9 @@
         <div class="profile-info">
           <h3>Ваша анкета</h3>
           <div class="table-wrapper">
-            <table class="table">${infoTable}</table>
+            <div class="table-responsive">
+              <table class="table">${infoTable}</table>
+            </div>
           </div>
         </div>
         <div class="profile-photo">
