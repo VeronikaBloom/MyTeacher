@@ -57,73 +57,94 @@
 <script>
 // Создание администратора, если он ещё не добавлен
 const defaultAdmin = {
-username: "admin",
-password: "admin123",
-role: "admin"
+    username: "admin",
+    password: "admin123",
+    role: "admin"
 };
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
 if (!users.some(user => user.username === defaultAdmin.username)) {
-users.push(defaultAdmin);
-localStorage.setItem("users", JSON.stringify(users));
+    users.push(defaultAdmin);
+    localStorage.setItem("users", JSON.stringify(users));
 }
 
 document.getElementById("loginForm").addEventListener("submit", function(event) {
-event.preventDefault();
+    event.preventDefault();
 
-const username = document.getElementById("username").value.trim();
-const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
 
-let users = JSON.parse(localStorage.getItem("users")) || [];
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-const user = users.find(u => u.username === username && u.password === password);
+    const user = users.find(u => u.username === username && u.password === password);
 
-if (!user) {
-    alert("Неверное имя пользователя или пароль.");
-    return;
-}
+    if (!user) {
+        alert("Неверное имя пользователя или пароль.");
+        return;
+    }
 
-  // Сохраняем текущего пользователя
-localStorage.setItem("currentUser", JSON.stringify(user));
+    // Сохраняем текущего пользователя
+    localStorage.setItem("currentUser", JSON.stringify(user));
 
-  // Перенаправляем в зависимости от роли
-if (user.role === "teacher") {
-    window.location.href = "teacher_dashboard.html";
-} else if (user.role === "student") {
-    window.location.href = "student_dashboard.html";
-} else if (user.role === "admin") {
-    window.location.href = "admin_dashboard.html";
-} else {
-    alert("Неизвестная роль.");
-}
-});
-    document.getElementById('menuToggle').addEventListener('click', function() {
-    document.querySelector('nav').classList.toggle('active');
+    // Перенаправляем в зависимости от роли
+    if (user.role === "teacher") {
+        window.location.href = "teacher_dashboard.html";
+    } else if (user.role === "student") {
+        window.location.href = "student_dashboard.html";
+    } else if (user.role === "admin") {
+        window.location.href = "admin_dashboard.html";
+    } else {
+        alert("Неизвестная роль.");
+    }
 });
 
-    // Скрипт для гамбургер-меню
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
+// Удаляем этот обработчик, так как он дублируется ниже
+// document.getElementById('menuToggle').addEventListener('click', function() {
+//     document.querySelector('nav').classList.toggle('active');
+// });
+
+// Скрипт для гамбургер-меню
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    menuToggle.addEventListener('click', function() {
+        // Переключаем класс active для кнопки
+        this.classList.toggle('active');
         
-        menuToggle.addEventListener('click', function() {
-            // Переключаем класс active для кнопки
-            this.classList.toggle('active');
-            
-            // Переключаем класс active для меню
-            mobileMenu.classList.toggle('active');
-        });
+        // Переключаем класс active для меню
+        mobileMenu.classList.toggle('active');
         
-        // Закрываем меню при клике на ссылку
-        const menuLinks = mobileMenu.querySelectorAll('a');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
+        // Блокировка/разблокировка скролла страницы
+        if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Закрываем меню при клике на ссылку
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = ''; // Восстанавливаем скролл
         });
     });
-
+    
+    // Закрываем меню при клике вне области меню
+    document.addEventListener('click', (event) => {
+        const isClickInsideMenu = mobileMenu.contains(event.target);
+        const isClickOnToggle = menuToggle.contains(event.target);
+        
+        if (mobileMenu.classList.contains('active') && !isClickInsideMenu && !isClickOnToggle) {
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = ''; // Восстанавливаем скролл
+        }
+    });
+});
 </script>
 
 </body>
