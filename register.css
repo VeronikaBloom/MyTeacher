@@ -188,6 +188,77 @@ a.btn-link:hover {
 }
 
 /* Адаптивность */
+    @media (max-width: 768px) {
+    /* Скрываем обычную навигацию на мобильных */
+    nav {
+        display: none;
+    }
+    
+    /* Показываем кнопку гамбургера */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    header {
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 15px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        gap: 8px;
+    }
+
+    .logo-img {
+        height: 35px;
+    }
+
+    .intro h1 {
+        font-size: 1.7rem;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+    }
+    }
+
+    @media (max-width: 480px) {
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .logo-img {
+        height: 30px;
+    }
+
+    .block {
+        min-width: 100%;
+    }
+
+    .feature-list li {
+        padding: 12px;
+    }
+    }
+
+    /* Анимация для кнопки меню */
+    .menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Показываем мобильное меню когда активно */
+    .mobile-menu.active {
+    display: flex;
+    }
+
 @media (max-width: 768px) {
     .container {
         width: 90%; /* Шире контейнер */
