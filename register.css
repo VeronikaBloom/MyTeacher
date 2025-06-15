@@ -19,6 +19,9 @@ header {
     padding: 15px 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
+    z-index: 100; /* Увеличен z-index */
+    height: 60px; /* Фиксированная высота */
+    box-sizing: border-box; /* Учитываем padding в высоте */
 }
 
 .logo {
@@ -36,12 +39,12 @@ header {
 }
 
 /* Обычное меню (десктоп) */
-nav {
+.desktop-menu {
     display: flex;
     gap: 15px;
 }
 
-nav a {
+.desktop-menu a {
     color: white;
     text-decoration: none;
     padding: 8px 15px;
@@ -51,7 +54,7 @@ nav a {
     font-size: 0.9rem;
 }
 
-nav a:hover {
+.desktop-menu a:hover {
     background-color: rgb(24, 76, 188);
     transform: scale(1.05);
 }
@@ -67,7 +70,7 @@ nav a:hover {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 12;
+    z-index: 110; /* Самый высокий z-index */
 }
 
 .menu-toggle span {
@@ -83,26 +86,32 @@ nav a:hover {
 .mobile-menu {
     display: none;
     position: fixed;
-    top: 70px;
+    top: 60px; /* Высота шапки */
     left: 0;
     right: 0;
+    bottom: 0;
     background-color: #006893;
     flex-direction: column;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    z-index: 90; /* Ниже шапки */
+    overflow-y: auto; /* Скролл при необходимости */
+    transform: translateY(-100%); /* Начальное положение за экраном */
+    transition: transform 0.3s ease; /* Плавное появление */
 }
 
 .mobile-menu.active {
     display: flex;
+    transform: translateY(0); /* Показываем меню */
 }
 
 .mobile-menu a {
     color: white;
     text-decoration: none;
-    padding: 12px 0;
+    padding: 15px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: background-color 0.3s;
+    font-size: 1.1rem;
 }
 
 .mobile-menu a:hover {
@@ -198,7 +207,7 @@ button[type="submit"]:hover {
         display: flex;
     }
     
-    nav {
+    .desktop-menu {
         display: none;
     }
     
