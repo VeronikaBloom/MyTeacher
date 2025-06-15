@@ -6,93 +6,49 @@ body {
     padding: 0;
     color: #333;
     line-height: 1.6;
-    overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+    overflow-x: hidden;
 }
 
+/* Шапка */
 header {
     display: flex;
-    justify-content: space-between; /* Лого слева, меню справа */
+    justify-content: space-between;
     align-items: center;
     background-color: rgb(0, 104, 147);
     color: white;
-    padding: 15px 20px; /* Можно чуть увеличить отступы */
+    padding: 15px 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
-    text-align: left; /* Убираем центрирование */
 }
 
-    .logo {
+.logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 2rem;
-    font-weight: bold;
-    }
-
-    .logo-img {
-    height: 45px;
-    }
-
-nav {
-    display: flex;
-    justify-content: flex-end; /* Меню справа */
-    gap: 10px; /* Расстояние между кнопками */
-    flex-wrap: nowrap;
-    max-height: none; /* Убираем ограничение по высоте для десктопа */
-    overflow: visible;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 6px 12px; /* Меньше padding, чтобы кнопка была маленькой */
-    border-radius: 12px;
-    background-color: rgb(29, 93, 235);
-    transition: background-color 0.3s, transform 0.2s;
-    font-size: 0.85rem; /* Меньший размер шрифта */
-    flex: 0 0 auto; /* Убираем растяжение */
-    min-width: auto; /* Убираем минимальную ширину */
-    text-align: center;
-    margin: 0; /* Убираем вертикальные отступы */
-}
-
-nav a:hover {
-    background-color: rgb(24, 76, 188);
-    transform: scale(1.05);
-}
-/* Мобильное меню */
-.menu-toggle {
-    display: none; /* Скрыто по умолчанию */
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: white;
     font-size: 1.5rem;
-    cursor: pointer;
+    font-weight: bold;
+    z-index: 11;
 }
 
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+/* Обычное меню (десктоп) */
 nav {
     display: flex;
-    justify-content: center;
-    gap: 15px; /* Уменьшаем промежутки */
-    flex-wrap: wrap;
-    transition: max-height 0.3s ease;
+    gap: 15px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    padding: 8px 15px; /* Меньшие отступы */
+    padding: 8px 15px;
     border-radius: 20px;
     background-color: rgb(29, 93, 235);
     transition: background-color 0.3s, transform 0.2s;
-    font-size: 0.9rem; /* Меньший размер шрифта */
-    flex: 1; /* Равномерное распределение */
-    min-width: 120px; /* Минимальная ширина */
-    text-align: center;
-    margin: 3px 0; /* Отступы между кнопками */
+    font-size: 0.9rem;
 }
 
 nav a:hover {
@@ -100,247 +56,173 @@ nav a:hover {
     transform: scale(1.05);
 }
 
-/* Контейнер для форм */
+/* Кнопка гамбургер-меню */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 12;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Мобильное меню */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: #006893;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s;
+}
+
+.mobile-menu a:hover {
+    background-color: rgba(29, 93, 235, 0.3);
+}
+
+/* Анимация кнопки меню */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Форма входа */
 .container {
     max-width: 500px;
     margin: 30px auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: white;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Учитываем padding в ширине */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
     color: rgb(0, 104, 147);
     text-align: center;
     margin-bottom: 20px;
-    font-size: 1.5rem; /* Уменьшаем размер заголовка */
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Уменьшаем промежутки */
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    margin-bottom: 15px;
 }
 
-.form-label {
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
     font-weight: 500;
-    font-size: 0.95rem; /* Меньший размер текста */
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-select {
+.form-group input {
     width: 100%;
-    padding: 12px; /* Больше высота для удобства касания */
-    border: 2px solid rgb(0, 104, 147);
+    padding: 12px;
+    border: 2px solid #ddd;
     border-radius: 6px;
-    transition: border-color 0.3s;
-    font-size: 1rem; /* Оптимальный размер шрифта */
-    box-sizing: border-box; /* Учитываем padding в ширине */
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
-input:focus,
-select:focus {
+.form-group input:focus {
     border-color: rgb(29, 93, 235);
     outline: none;
 }
 
 button[type="submit"] {
+    width: 100%;
+    padding: 14px;
     background-color: rgb(29, 93, 235);
     color: white;
-    padding: 14px; /* Выше кнопка */
     border: none;
-    border-radius: 25px;
+    border-radius: 6px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    font-size: 1.1rem; /* Чуть больше текст */
-    font-weight: 500;
-    margin-top: 10px;
+    transition: background-color 0.3s;
 }
 
 button[type="submit"]:hover {
     background-color: rgb(24, 76, 188);
-    transform: scale(1.05);
 }
 
-a.btn-link {
+.container p {
     text-align: center;
-    color: rgb(0, 104, 147);
-    text-decoration: none;
     margin-top: 15px;
-    display: block;
-    transition: color 0.2s;
-    font-size: 0.95rem;
 }
 
-a.btn-link:hover {
-    color: rgb(24, 76, 188);
+.container a {
+    color: rgb(29, 93, 235);
+    text-decoration: none;
+}
+
+.container a:hover {
     text-decoration: underline;
 }
 
 /* Адаптивность */
-    @media (max-width: 768px) {
-    /* Скрываем обычную навигацию на мобильных */
-    nav {
-        display: none;
-    }
-    
-    /* Показываем кнопку гамбургера */
+@media (max-width: 768px) {
     .menu-toggle {
         display: flex;
     }
     
-    header {
-        flex-direction: row;
-        align-items: center;
-        padding: 10px 15px;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-        gap: 8px;
-    }
-
-    .logo-img {
-        height: 35px;
-    }
-
-    .intro h1 {
-        font-size: 1.7rem;
-    }
-
-    .feature-list {
-        grid-template-columns: 1fr;
-    }
-    }
-
-    @media (max-width: 480px) {
-    .logo {
-        font-size: 1.3rem;
-    }
-
-    .logo-img {
-        height: 30px;
-    }
-
-    .block {
-        min-width: 100%;
-    }
-
-    .feature-list li {
-        padding: 12px;
-    }
-    }
-
-    /* Анимация для кнопки меню */
-    .menu-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-    }
-
-    .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-    }
-
-    .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-    }
-
-    /* Показываем мобильное меню когда активно */
-    .mobile-menu.active {
-    display: flex;
-    }
-
-@media (max-width: 768px) {
-    .container {
-        width: 90%; /* Шире контейнер */
-        margin: 20px auto;
-        padding: 15px;
-    }
-    
-    .logo {
-        font-size: 1.3rem;
-    }
-    
     nav {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-        max-height: 0;
-        overflow: hidden;
+        display: none;
     }
     
-    nav.active {
-        max-height: 500px; /* Показываем меню */
-        padding: 10px 0;
-    }
-    
-    .menu-toggle {
-        display: block; /* Показываем кнопку меню */
-    }
-    
-    nav a {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 12px;
-    }
-    
-    input[type="text"],
-    input[type="password"],
-    input[type="email"],
-    select {
-        padding: 14px; /* Еще больше для мобильных */
-    }
-    
-    button[type="submit"] {
-        padding: 16px; /* Больше для удобства нажатия */
+    .container {
+        width: 90%;
+        padding: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        width: 95%;
-        margin: 15px auto;
-        padding: 12px;
-    }
-    
-    h2 {
+    .logo {
         font-size: 1.3rem;
     }
     
-    .form-label {
-        font-size: 0.9rem;
+    .logo-img {
+        height: 35px;
     }
     
-    input[type="text"],
-    input[type="password"],
-    input[type="email"],
-    select {
-        font-size: 0.95rem;
+    .mobile-menu {
+        top: 60px;
     }
     
-    button[type="submit"] {
-        font-size: 1rem;
+    .container {
+        width: 95%;
+        margin: 20px auto;
     }
-}
-
-footer {
-    background-color: rgb(0, 104, 147);
-    color: white;
-    padding: 20px;
-    text-align: left;
-    margin-top: 30px;
-    font-size: 0.9rem;
-}
-
-footer p {
-    margin-bottom: 8px;
 }
