@@ -568,9 +568,9 @@
                 
                 // Перенаправление на страницу пользователя
                 setTimeout(() => {
-                    if (user.role === 'student') window.location.href = 'student_dashboard.html';
-                    else if (user.role === 'teacher') window.location.href = 'teacher_dashboard.html';
-                    else if (user.role === 'admin') window.location.href = 'admin_dashboard.html';
+                    if (user.role === 'student') window.location.href = 'index.html';
+                    else if (user.role === 'teacher') window.location.href = 'index.html';
+                    else if (user.role === 'admin') window.location.href = 'index.html';
                 }, 1000);
             });
         }
